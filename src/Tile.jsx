@@ -36,9 +36,9 @@ const Tile = (props) => {
     const coin = over && item === COIN;
     const trap = over && item === TRAP;
     const width = bsz / dim;
-    const flagSize = width / 1.7;
-    const coinSize = width / 1.8;
-    const trapSize = width / 1.8;
+    const flagSize = width / 1.8;
+    const coinSize = width / 1.7;
+    const trapSize = width / 1.9;
     const apple = isAppleDevice();
 
     const processClick = () => {

@@ -11,7 +11,7 @@ const Player = () => {
     const gridArea = '1/2';
     const src = over === WON ? Coin : over === LOST ? Trap : Flag;
     const scale = over === LOST ? 8 / 9 : 1;
-    const style = over === LOST ? { transform: `scale(${scale})` } : {};
+    const style = over === LOST ? { transform: `scale(${scale})`, filter: 'sepia(0.7)' } : {};
 
     return <img src={src} alt='avatar' width={90} style={{ gridArea, zIndex: 1, ...style }} />;
 };

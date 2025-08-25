@@ -133,7 +133,7 @@
     justify-content: center;
     justify-items: center;
     grid: 1fr auto clamp(0.5fr 1fr 1fr) / auto;
-    filter: drop-shadow(0 4px 4px black);
+    /* filter: drop-shadow(0 4px 4px black); */
     opacity: 0;
 }
 
@@ -153,6 +153,7 @@
     align-items: center;
     margin: 10px 0;
     font-family: Cinzel;
+    filter: drop-shadow(0 4px 4px black);
 }
 
 .stats-panel-label {
@@ -203,9 +204,11 @@
     grid-auto-flow: column;
     grid: auto / 1fr auto 1fr;
     align-items: center;
+    filter: drop-shadow(0 4px 4px black);
 }
 
-.avatar, .avatar-watched {
+.avatar,
+.avatar-watched {
     grid-area: 1/1;
     display: grid;
     border-radius: 50%;
@@ -269,6 +272,7 @@
     grid-area: 1/1;
     display: grid;
     place-self: center;
+    z-index: 1;
 }
 
 .start-prompt {
@@ -276,6 +280,7 @@
     place-self: center;
     display: grid;
     gap: 50px;
+    filter: drop-shadow(0 4px 4px black);
 }
 
 .opp-alert {
@@ -337,6 +342,7 @@
     place-content: center;
     align-items: center;
     margin: 5px 0;
+    filter: drop-shadow(0 4px 4px black);
 }
 
 .tool-button {

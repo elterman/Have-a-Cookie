@@ -40,7 +40,7 @@ const StartPrompt = () => {
     if (start) {
         const style = { fontFamily: 'Cinzel', fontSize: '28px', fontWeight: 'bold', width: 50, height: 50, borderRadius: '50%' };
 
-        return <div className="start-prompt">
+        return <div className="start-prompt" style={{ zIndex: 2 }}>
             <PromptPanel id='pp-sizes' style={{ gridArea: _11, gap: '16px' }} labels={SIZES} onClick={onResize} show={show} buttonStyle={style} />
             {prompt}
         </div>;
