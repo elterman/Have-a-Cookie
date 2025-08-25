@@ -100,6 +100,31 @@
             -ms-user-select: none;
             user-select: none;
         }
+
+        .cookie {
+            background-image: url('$lib/images/Cookie Texture.webp');
+        }
+
+        .napkin {
+            background-image: url('$lib/images/Napkin Texture.webp');
+            filter: brightness(1.1);
+        }
+
+        .toast {
+            background-image: url('$lib/images/Toast Texture.webp');
+            filter: brightness(1.7);
+        }
+
+        .cookie,
+        .napkin,
+        .toast {
+            background-clip: text;
+            -webkit-background-clip: text; /* For broader browser compatibility */
+            color: transparent;
+            text-shadow: none;
+            background-size: cover;
+            background-position: center;
+        }
     }
 
     .app {
@@ -131,7 +156,7 @@
     .disclaimer {
         grid-area: 1/1;
         place-self: center;
-        font-family: initial;
+        font-family: Roboto Mono;
         font-size: 10px;
         transform: translateY(360px);
         display: grid;

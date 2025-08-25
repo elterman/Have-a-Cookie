@@ -9,16 +9,17 @@
 
     const ul = '<ul style="margin: 15px 0 0 0;">';
     const li = '<li style="margin: 10px 0 0 -20px;">';
-    const gold = '<span style="color: var(--gold);">';
-    const red = '<span style="color: var(--red);">';
+    const cookie = '<span class="cookie">';
+    const napkin = '<span class="napkin">';
+    const toast = '<span class="toast">';
     const click = tapOrClick();
 
     const CONTENT = `
-        <span>How quickly can you find the delicious ${gold}cookie</span> hiding some-where on the table?</span>
+        <span>How quickly can you find the delicious ${cookie}cookie</span> hiding some-where on the table?</span>
         ${ul}
-        ${li}${red}Napkins</span> mark either the ${gold}cookie</span> or a ${gold}burnt toast</span>.</li>
-        ${li}${click} a ${red}napkin</span> if you think it hides the ${gold}cookie</span>. Otherwise, tap an empty plate.</li>
-        ${li}${gold}Toasts</span> may move with each tap, but the ${gold}cookie</span> stays in the same spot.</li>
+        ${li}${napkin}Napkins</span> mark either the ${cookie}cookie</span> or a ${toast}burnt toast</span>.</li>
+        ${li}${click} a ${napkin}napkin</span> if you think it hides the ${cookie}cookie</span>. Otherwise, tap an empty plate.</li>
+        ${li}${toast}Toasts</span> may move with each tap, but the ${cookie}cookie</span> stays in the same spot.</li>
         </ul>`;
 
     const resume = $derived(ss.cells.length && !ss.over);
@@ -37,9 +38,9 @@
 
 {#if ss.intro}
     <div class="intro" in:fade>
-        <div class="title">
-            <span>HAVE A COOKIE</span>
-            <span class="subtitle">DON'T BE TOAST</span>
+        <div class="title-panel">
+            <span class="title cookie">HAVE A COOKIE</span>
+            <span class="subtitle toast">DON'T BE TOAST</span>
         </div>
         <div class="content" tabindex="-1">
             <!-- eslint-disable-next-line svelte/no-at-html-tags -->
@@ -60,16 +61,18 @@
         justify-items: center;
     }
 
-    .title {
+    .title-panel {
         display: grid;
         place-items: center;
+        filter: drop-shadow(0 0 5px black);
+    }
+
+    .title {
         font-size: 38px;
-        color: var(--gold);
     }
 
     .subtitle {
         font-size: 30px;
-        color: var(--red);
     }
 
     .content {
@@ -77,9 +80,11 @@
         display: grid;
         align-content: start;
         width: 330px;
+        filter: drop-shadow(0 0 2px black);
     }
 
     .buttons {
         place-self: center;
+        filter: drop-shadow(0 0 5px black);
     }
 </style>

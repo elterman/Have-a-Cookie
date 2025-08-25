@@ -3,7 +3,6 @@
     import MusicOn from '$lib/images/Music On.webp';
     import Help from '$lib/images/Question.webp';
     import ResetStats from '$lib/images/Reset Stats.webp';
-    import Restart from '$lib/images/Restart.webp';
     import SoundOff from '$lib/images/Sound Off.webp';
     import SoundOn from '$lib/images/Sound On.webp';
     import { PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';

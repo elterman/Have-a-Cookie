@@ -1,5 +1,5 @@
 <script>
-    import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS, PROMPT_RESTART } from './const';
+    import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
@@ -54,12 +54,6 @@
 <div id="prompt" class="prompt {_prompt.opacity ? 'visible' : ''}">
     {#if label === PROMPT_PLAY_AGAIN}
         <PromptPanel ops={[{ label, style, onClick: onPlayAgain }]} />
-    {:else if label === PROMPT_RESTART}
-        <PromptPanel
-            ops={[
-                { label, style, onClick: onPlayAgain },
-                { label: PROMPT_NO, style },
-            ]} />
     {:else if label === PROMPT_RESET_STATS}
         <PromptPanel
             ops={[

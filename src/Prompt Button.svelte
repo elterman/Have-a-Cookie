@@ -26,14 +26,14 @@
     });
 </script>
 
-<div id={op.label} class='button-base no-highlight button chevalier' {style} onpointerdown={() => (scale = 0.8)}>
+<div id={op.label} class='button-base no-highlight button cookie' {style} onpointerdown={() => (scale = 0.8)}>
     <span style={op.style}>{op.label}</span>
 </div>
 
 <style>
     .button {
         cursor: pointer;
-        color: var(--gold);
+        /* color: var(--gold); */
     }
 
     .button:hover {
