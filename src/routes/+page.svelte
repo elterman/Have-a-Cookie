@@ -68,18 +68,15 @@
         body {
             margin: 0;
             overflow: hidden;
-            --bill: #e5d5ca;
+            --ow: #c6c7be;
             --sn: #309678;
             --gray: #6d6a67;
+            --gold: #daa520;
+            --red: #ee4244;
             --background: #604020;
+            color: var(--ow);
             background: var(--background);
-        }
-
-        .chevalier {
-            font-family: Chevalier Stripes;
-            font-weight: bold;
-            scale: 0.7 1.5;
-            color: var(--gray);
+            font-family: Cooper;
         }
 
         .button-base {
@@ -134,8 +131,9 @@
     .disclaimer {
         grid-area: 1/1;
         place-self: center;
+        font-family: initial;
         font-size: 10px;
-        transform: translateY(350px);
+        transform: translateY(360px);
         display: grid;
         justify-items: center;
         gap: 3px;

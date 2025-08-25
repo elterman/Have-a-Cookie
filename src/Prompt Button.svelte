@@ -33,9 +33,10 @@
 <style>
     .button {
         cursor: pointer;
+        color: var(--gold);
     }
 
     .button:hover {
-        text-decoration: underline;
+        /* text-decoration: underline; */
     }
 </style>
