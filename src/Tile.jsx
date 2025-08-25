@@ -36,9 +36,9 @@ const Tile = (props) => {
     const coin = over && item === COIN;
     const trap = over && item === TRAP;
     const width = bsz / dim;
-    const flagSize = width / 1.4;
-    const coinSize = width / 1.4;
-    const trapSize = width / 1.4;
+    const flagSize = width / 1.7;
+    const coinSize = width / 1.8;
+    const trapSize = width / 1.8;
     const apple = isAppleDevice();
 
     const processClick = () => {
@@ -107,7 +107,7 @@ const Tile = (props) => {
             const { img, sz } = props;
 
             return <div className='tile-content'>
-                <img src={img} alt='' width={sz} />
+                <img src={img} alt='' width={sz} style={{ filter: `drop-shadow(0 0 ${sz / 10}px black)` }} />
             </div>;
         };
 
