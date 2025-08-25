@@ -13,7 +13,7 @@ const Board = () => {
         return null;
     }
 
-    return <motion.div className='board' animate={{ filter: paused ? 'brightness(0.45)' : 'drop-shadow(0 4px 4px black)' }}>
+    return <motion.div className='board' animate={{ filter: paused ? 'brightness(0.45)' : 'drop-shadow(0 4px 4px #00000080)' }}>
         {_.map(tiles, (tile, i) => <Tile key={size * 100 + i} tile={tile} />)}
     </motion.div>;
 };

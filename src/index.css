@@ -39,8 +39,8 @@ body {
 }
 
 @font-face {
-  font-family: Cinzel;
-  src: url(./Fonts/CinzelDecorative.ttf);
+  font-family: Cooper;
+  src: url(./Fonts/COOPBL.ttf);
 }
 
 .root-scroll {

@@ -9,7 +9,7 @@ import GamePage from './Game Page.jsx';
 import BMG from './Images/BMG.webp';
 import Preloader from './Preloader.jsx';
 import StartPage from './Start Page.jsx';
-import { EN, ES, PT, RU } from './useLang.js';
+import { EN } from './useLang.js';
 import { defer, windowSize } from './utils';
 
 const App = () => {
@@ -25,8 +25,7 @@ const App = () => {
             return;
         }
 
-        const l = (navigator.language || navigator.languages[0]).split('-')[0];
-        setLanguage(l === ES || l === PT || l === RU ? l : EN);
+        setLanguage(EN);
     }, [language, setLanguage]);
 
     const { x: wx, y: wy } = windowSize();

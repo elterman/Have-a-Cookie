@@ -1,6 +1,7 @@
 :root {
     --app-color: #604020;
-    --gold: #FFE4AD;
+    /* --gold: #FFE4AD; */
+    --gold: goldenrod;
 }
 
 .App {
@@ -11,7 +12,7 @@
     font-size: 18px;
     user-select: none;
     -webkit-tap-highlight-color: #0000;
-    color: #FFF;
+    color: silver;
     background: var(--app-color);
     box-sizing: border-box;
 }
@@ -58,7 +59,7 @@
     grid: 1fr auto 0.9fr / auto;
     place-content: center;
     justify-items: center;
-    filter: drop-shadow(0 4px 4px black);
+    filter: drop-shadow(0 4px 4px #000000c0);
     opacity: 0;
     overflow: hidden;
 }
@@ -90,19 +91,17 @@
     max-width: 400px;
     padding: 18px;
     color: #CCCCCC;
-    filter: drop-shadow(2px 2px 2px #000);
     display: grid;
     gap: 15px;
     place-self: center;
-    font-family: Cinzel;
-    font-weight: bold;
+    font-family: Cooper;
     overflow: hidden;
     font-size: 20px;
 }
 
 .rose,
 .multiplayer {
-    color: #EC7063;
+    color: #ee4244;
 }
 
 .multiplayer {
@@ -133,7 +132,6 @@
     justify-content: center;
     justify-items: center;
     grid: 1fr auto clamp(0.5fr 1fr 1fr) / auto;
-    /* filter: drop-shadow(0 4px 4px black); */
     opacity: 0;
 }
 
@@ -152,13 +150,15 @@
     gap: 15px;
     align-items: center;
     margin: 10px 0;
-    font-family: Cinzel;
-    filter: drop-shadow(0 4px 4px black);
+    font-family: Cooper;
+    font-size: 24px;
+    filter: drop-shadow(0 4px 4px #00000080);
 }
 
 .stats-panel-label {
-    color: #FFFFFF68;
-    filter: sepia(1);
+    /* color: #FFFFFF80 */
+    color: #b63938;
+    /* filter: sepia(1); */
 }
 
 .stats-panel-value {
@@ -180,7 +180,7 @@
     place-self: center;
     text-shadow: 2px 2px 2px black;
     color: var(--gold);
-    font-family: Cinzel;
+    font-family: Cooper;
 }
 
 .time {
@@ -189,12 +189,12 @@
 }
 
 .time-solo {
-    font-size: 28px;
+    font-size: 40px;
     margin: 0;
 }
 
 .solo-points {
-    font-size: 28px;
+    font-size: 40px;
 }
 
 .scoreboard-solo {
@@ -204,7 +204,7 @@
     grid-auto-flow: column;
     grid: auto / 1fr auto 1fr;
     align-items: center;
-    filter: drop-shadow(0 4px 4px black);
+    filter: drop-shadow(0 4px 4px #00000080);
 }
 
 .avatar,
@@ -280,7 +280,6 @@
     place-self: center;
     display: grid;
     gap: 50px;
-    filter: drop-shadow(0 4px 4px black);
 }
 
 .opp-alert {
@@ -315,7 +314,7 @@
     grid-auto-flow: column;
     gap: 20px;
     opacity: 0;
-    font-family: Cinzel;
+    font-family: Cooper;
 }
 
 .prompt-button,
@@ -325,11 +324,11 @@
     padding: 0 20px;
     display: grid;
     place-content: center;
-    color: white;
-    background: -webkit-linear-gradient(-90deg, #fff -400%, #00000080 100%);
+    /* color: silver; */
+    background: -webkit-linear-gradient(-90deg, silver -400%, #00000080 100%);
     box-sizing: border-box;
     text-shadow: 2px 2px 2px #000;
-    border: 2px solid white;
+    border: 2px solid silver;
     filter: drop-shadow(0 5px 5px #000000);
 }
 
@@ -342,7 +341,7 @@
     place-content: center;
     align-items: center;
     margin: 5px 0;
-    filter: drop-shadow(0 4px 4px black);
+    filter: drop-shadow(0 4px 4px #00000080);
 }
 
 .tool-button {
