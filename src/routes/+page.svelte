@@ -1,5 +1,4 @@
 <script>
-    import Corners from '$lib/images/Corners.webp';
     import Frame from '$lib/images/Frame.webp';
     import GamePage from '../Game Page.svelte';
     import Intro from '../Intro.svelte';
@@ -54,10 +53,6 @@
     {:else}
         <div class="content" style="scale: {scale};">
             <img class="frame" src={Frame} alt="" />
-            {#if true}
-                {@const style = 'user-drag: none;'}
-                <img class="corners" {style} src={Corners} alt="" />
-            {/if}
             <GamePage />
             <Intro />
             {#if ss.intro}
@@ -76,7 +71,7 @@
             --bill: #e5d5ca;
             --sn: #309678;
             --gray: #6d6a67;
-            --background: #6b796d;
+            --background: #604020;
             background: var(--background);
         }
 
@@ -118,28 +113,22 @@
         overflow: hidden;
         touch-action: manipulation;
         outline: none !important;
-        background-image: url('$lib/images/Seal.webp');
-        background-size: 70px;
+        background-image: url('$lib/images/Pattern Original.webp');
+        background-size: 200px;
         place-content: center;
     }
 
     .content {
         grid-area: 1/1;
         display: grid;
-        background: var(--bill);
-        background-image: url('$lib/images/Texture.webp');
+        background: #5c341d;
+        background-image: radial-gradient(transparent, black 150%);
         touch-action: none;
     }
 
     .frame {
         grid-area: 1/1;
         touch-action: none;
-    }
-
-    .corners {
-        grid-area: 1/1;
-        filter: drop-shadow(0 0 3px #000000);
-        -webkit-user-drag: none; /* For WebKit browsers (Chrome, Safari) */
     }
 
     .disclaimer {
@@ -151,15 +140,9 @@
         justify-items: center;
         gap: 3px;
     }
-
     @font-face {
-        font-family: Chevalier Stripes;
-        src: url('$lib/fonts/Chevalier Stripes.ttf');
-    }
-
-    @font-face {
-        font-family: PFD Mono;
-        src: url('$lib/fonts/PF Din Mono.otf');
+        font-family: Cooper;
+        src: url('$lib/fonts/COOPBL.TTF');
     }
 
     @font-face {
