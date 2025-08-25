@@ -1,14 +1,15 @@
 {
   "workbench.colorCustomizations": /*light*/ {
-    "titleBar.activeBackground": "#FFCCFF",
-    "titleBar.inactiveBackground": "#FFCCFF",
+    "titleBar.activeBackground": "#b1ffad",
+    "titleBar.inactiveBackground": "#b1ffad",
+    "tab.inactiveBackground": "#a4eba0",
     "sideBar.background": "#F8F8F8",
     "terminal.background": "#F8F8F8"
   },
   "workbench.colorCustomizations": /*dark*/ {
-    "titleBar.activeBackground": "#32005F",
-    "titleBar.inactiveBackground": "#32005F",
-    "tab.inactiveBackground": "#32005FA0",
+    "titleBar.activeBackground": "#424f4980",
+    "titleBar.inactiveBackground": "#424f49",
+    "tab.inactiveBackground": "#424f49",
     "tab.inactiveForeground": "#FFFFFFD0",
     "tab.activeBackground": "#000",
     "sideBar.background": "#203040",
@@ -16,6 +17,9 @@
   },
   "window.title": "${dirty}${rootName} • ${activeEditorShort}",
   "terminal.integrated.cursorBlinking": true,
+  "vscode_custom_css.imports": [
+    "file:///C:/git/Cloud-Drive/vs-code-custom.css"
+  ],
   "vscode_custom_css.policy": true,
   "editor.guides.bracketPairs": true,
   "editor.guides.bracketPairsHorizontal": true,
