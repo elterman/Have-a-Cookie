@@ -11,11 +11,12 @@
     const li = '<li style="margin: 10px 0 0 -20px;">';
     const cookie = '<span class="cookie">';
     const napkin = '<span class="napkin">';
+    // const napkin = '<span style="color: var(--red);">';
     const toast = '<span class="toast">';
     const click = tapOrClick();
 
     const CONTENT = `
-        <span>How quickly can you find the delicious ${cookie}cookie</span> hiding some-where on the table?</span>
+        <span>How quickly can you find the delicious ${cookie}cookie</span> hiding under a ${napkin}napkin?</span>
         ${ul}
         ${li}${napkin}Napkins</span> mark either the ${cookie}cookie</span> or a ${toast}burnt toast</span>.</li>
         ${li}${click} a ${napkin}napkin</span> if you think it hides the ${cookie}cookie</span>. Otherwise, tap an empty plate.</li>
@@ -76,7 +77,7 @@
     }
 
     .content {
-        font-size: 20px;
+        font-size: 21px;
         display: grid;
         align-content: start;
         width: 330px;

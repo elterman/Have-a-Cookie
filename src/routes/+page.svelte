@@ -72,7 +72,7 @@
             --sn: #309678;
             --gray: #6d6a67;
             --gold: #daa520;
-            --red: #ee4244;
+            --red: #a52a2a;
             --background: #604020;
             color: var(--ow);
             background: var(--background);
@@ -107,7 +107,6 @@
 
         .napkin {
             background-image: url('$lib/images/Napkin Texture.webp');
-            filter: brightness(1.1);
         }
 
         .toast {
@@ -156,12 +155,13 @@
     .disclaimer {
         grid-area: 1/1;
         place-self: center;
-        font-family: Roboto Mono;
+        /* font-family: Roboto Mono; */
         font-size: 10px;
         transform: translateY(360px);
         display: grid;
         justify-items: center;
         gap: 3px;
+        opacity: 0.8;
     }
     @font-face {
         font-family: Cooper;
