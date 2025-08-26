@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     import Board from './Board.svelte';
     import Counters from './Counters.svelte';
-    import InfoPanel from './Info Panel.svelte';
     import Prompt from './Prompt.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
@@ -10,6 +9,7 @@
     import { _sound } from './sound.svelte';
     import { _stats, ss } from './state.svelte';
     import { post } from './utils';
+    import StartPrompt from './Start Prompt.svelte';
 
     onMount(() => {
         const loadGame = () => {
@@ -38,7 +38,7 @@
     <Stats />
     <Counters />
     <Board />
-    <!-- <StartPrompt /> -->
+    <StartPrompt />
     <Prompt />
     <Toolbar />
 </div>

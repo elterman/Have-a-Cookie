@@ -58,7 +58,7 @@
     }
 
     .button:hover {
-        filter: saturate(5);
+        filter: saturate(2);
     }
 
     .disabled {

@@ -26,7 +26,7 @@
     }
 
     .timer {
-        font-size: 40px;
+        font-size: 44px;
         color: var(--gold);
     }
 

@@ -42,7 +42,7 @@
 
     .item {
         box-sizing: border-box;
-        font-size: 18px;
+        font-size: 20px;
         display: grid;
         grid-auto-flow: column;
         gap: 10px;
