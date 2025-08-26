@@ -157,7 +157,7 @@
         place-self: center;
         /* font-family: Roboto Mono; */
         font-size: 10px;
-        transform: translateY(360px);
+        transform: translateY(370px);
         display: grid;
         justify-items: center;
         gap: 3px;

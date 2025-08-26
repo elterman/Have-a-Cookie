@@ -36,15 +36,12 @@
         place-content: center;
         gap: 10px;
         border-radius: 50vh;
-        color: var(--sn);
+        color: gold;
     }
 
     .item {
         box-sizing: border-box;
-        font-family: Roboto;
-        font-weight: bold;
-        font-size: 14px;
-        border-radius: 50vh;
+        font-size: 18px;
         display: grid;
         grid-auto-flow: column;
         gap: 10px;
@@ -53,8 +50,7 @@
     }
 
     .label {
-        font-family: PFD Mono;
-        color: var(--gray);
+        color: var(--red);
     }
 
     .plays {

@@ -29,9 +29,6 @@
 <style>
     .timer {
         display: grid;
-        font-family: Roboto;
-        scale: 0.85 1;
-        font-weight: bold;
         /* font-size: 40px; */
     }
 

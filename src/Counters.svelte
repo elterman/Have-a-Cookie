@@ -1,14 +1,12 @@
 <script>
-    import Score from './Score.svelte';
     import { elapsedSecs } from './shared.svelte';
     import { ss } from './state.svelte';
     import Timer from './Timer.svelte';
 
-    const color = $derived(ss.over === 'lost' ? 'red' : '');
+    const color = $derived(ss.over === 'lost' ? 'lost' : '');
 </script>
 
 <div class="counters {color}">
-    <Score />
     <div class="timer {color}">
         <Timer secs={elapsedSecs()} />
     </div>
@@ -28,10 +26,10 @@
 
     .timer {
         font-size: 40px;
-        color: var(--sn);
+        color: var(--gold);
     }
 
-    .red {
-        color: brown;
+    .lost {
+        filter: saturate(5);
     }
 </style>

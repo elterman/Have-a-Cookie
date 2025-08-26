@@ -10,8 +10,8 @@
     const ul = '<ul style="margin: 15px 0 0 0;">';
     const li = '<li style="margin: 10px 0 0 -20px;">';
     const cookie = '<span class="cookie">';
-    const napkin = '<span class="napkin">';
-    // const napkin = '<span style="color: var(--red);">';
+    const napkin = '<span class="cookie">';
+    // const napkin = '<span style="color: coral;">';
     const toast = '<span class="toast">';
     const click = tapOrClick();
 
@@ -65,7 +65,7 @@
     .title-panel {
         display: grid;
         place-items: center;
-        filter: drop-shadow(0 0 5px black);
+        filter: drop-shadow(0px 2px 5px black);
     }
 
     .title {
@@ -81,11 +81,11 @@
         display: grid;
         align-content: start;
         width: 330px;
-        filter: drop-shadow(0 0 2px black);
+        filter: drop-shadow(0 2px 3px black);
     }
 
     .buttons {
         place-self: center;
-        filter: drop-shadow(0 0 5px black);
+        filter: drop-shadow(0 2px 5px black);
     }
 </style>
