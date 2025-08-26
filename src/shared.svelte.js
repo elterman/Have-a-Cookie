@@ -118,9 +118,9 @@ export const onSizeSet = (size, tileSets) => {
     }
 
     ss.tileSets = tileSets;
-    setStep(1);
-    setSecs(0);
-    setOver(null);
-    setPaused(true);
-    setAlert({ alert: null });
+    ss.step = 1;
+    ss.secs = 0;
+    ss.over = null;
+    ss.paused = true;
+    _prompt.id = null;
 };

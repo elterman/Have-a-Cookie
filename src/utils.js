@@ -111,3 +111,5 @@ export const retile = size => {
 
     return sets;
 };
+
+export const samePos = (one, two) => one?.row === two.row && one?.col === two.col;

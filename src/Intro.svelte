@@ -5,6 +5,7 @@
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { tapOrClick } from './utils';
+    import { onSizeSet } from './shared.svelte';
 
     const ul = '<ul style="margin: 15px 0 0 0;">';
     const li = '<li style="margin: 10px 0 0 -20px;">';
@@ -29,7 +30,7 @@
         _sound.play('plop');
 
         if (!ss.size) {
-            ss.size = DEFAULT_GAME_SIZE;
+            onSizeSet(DEFAULT_GAME_SIZE);
         }
 
         if (!ss.over) {
