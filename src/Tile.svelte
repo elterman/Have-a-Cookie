@@ -22,10 +22,10 @@
     const sel = $derived(ss.over && ss.selected && samePos(ss.selected, tile));
 </script>
 
-<div {id} class="tile {ss.puased || ss.over ? 'ro' : ''}" style="grid-area: {area}, {width}, height: {width}">
-    {#if !ss.paused}
-        <div class={`tile-inner${sel ? '-selected' : ''}`}>
-            <img class="plate" src={Plate} alt="" width="100%" height="100%" />
+<div {id} class="tile {ss.puased || ss.over ? 'ro' : ''}" style="grid-area: {area}; width: {width}px; height: {width}px;">
+    <div class={`tile-inner${sel ? '-selected' : ''}`}>
+        <img class="plate" src={Plate} alt="" width="100%" height="100%" />
+        {#if !ss.paused}
             {#snippet content(img, sz)}
                 <div class="tile-content">
                     <img src={img} alt="" width={sz} style="filter: 'drop-shadow(0 0 {sz / 10}px black);" />
@@ -40,8 +40,8 @@
             {#if flag}
                 {@render content(Flag, flagSize)}
             {/if}
-        </div>
-    {/if}
+        {/if}
+    </div>
 </div>
 
 <style>

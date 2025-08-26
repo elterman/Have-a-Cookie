@@ -69,7 +69,7 @@ const shuffle = (size, coinIndex = null) => {
     let indexes;
 
     if (isNumber(coinIndex)) {
-        rng = rng.filter(rng, i => i !== coinIndex);
+        rng = rng.filter(i => i !== coinIndex);
         flagCount -= 1;
         indexes = sampleSize(rng, flagCount);
     } else {

@@ -1,7 +1,7 @@
 <script>
     import { post } from './utils';
 
-    const { id, src, width = 44, disabled, onClick } = $props();
+    const { id, src, width = 50, disabled, onClick } = $props();
 
     let scale = $state(1);
     let timer3 = $state(false);

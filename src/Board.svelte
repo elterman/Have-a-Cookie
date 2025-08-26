@@ -2,7 +2,7 @@
     import { ss } from './state.svelte';
     import Tile from './Tile.svelte';
 
-    const tiles = $derived(ss.tileSets[ss.step - 1]);
+    const tiles = $derived(ss.tileSets ? ss.tileSets[ss.step - 1] : []);
 </script>
 
 <div class="board {ss.paused ? 'paused' : ''}">
@@ -13,7 +13,7 @@
 
 <style>
     .board {
-        grid-area: 1/1;
+        grid-area: 3/1;
         display: grid;
         place-self: center;
         z-index: 1;

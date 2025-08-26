@@ -72,5 +72,6 @@
         grid-auto-flow: column;
         place-content: center;
         gap: 5px;
+        filter: drop-shadow(0 2px 5px black);
     }
 </style>

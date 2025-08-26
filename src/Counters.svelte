@@ -22,6 +22,7 @@
         gap: 50px;
         color: var(--background);
         transition: color 1s;
+        filter: drop-shadow(0 2px 5px black);
     }
 
     .timer {
