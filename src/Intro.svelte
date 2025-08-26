@@ -1,8 +1,7 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { PROMPT_RESUME, PROMPT_START } from './const';
+    import { DEFAULT_GAME_SIZE, PROMPT_RESUME, PROMPT_START } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onStart } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { tapOrClick } from './utils';
@@ -29,11 +28,15 @@
     const onClick = () => {
         _sound.play('plop');
 
-        ss.intro = false;
-
-        if (!resume) {
-            onStart();
+        if (!ss.size) {
+            ss.size = DEFAULT_GAME_SIZE;
         }
+
+        if (!ss.over) {
+            ss.paused = true;
+        }
+
+        ss.intro = false;
     };
 </script>
 

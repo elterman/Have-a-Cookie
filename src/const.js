@@ -13,3 +13,12 @@ export const SOLO_SEED = ROWS * COLS;
 export const BILLS = [1, 2, 5, 10, 20, 50, 100];
 export const TICK_MS = 500;
 export const TIME_OUT_SECS = 3559;
+
+export const FLAGS = [5, 9, 13, 17, 21];
+export const SECS = [25, 33, 41, 49, 57];
+export const DEFAULT_GAME_SIZE = 1;
+export const MIN_GAME_DIMENSION = 3;
+export const COIN = 1;
+export const TRAP = -1;
+export const TILE_SET_SIZE = 25;
+export const BOARD_SIZE = 400;

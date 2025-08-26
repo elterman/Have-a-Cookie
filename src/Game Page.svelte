@@ -36,9 +36,9 @@
 
 <div class="game-page {hidden ? 'hidden' : ''}">
     <Stats />
-    <Counters/>
+    <Counters />
     <Board />
-    <InfoPanel />
+    <!-- <StartPrompt /> -->
     <Prompt />
     <Toolbar />
 </div>

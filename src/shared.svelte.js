@@ -2,7 +2,7 @@ import { random, sample } from 'lodash-es';
 import { APP_STATE, BILLS, COLS, PROMPT_PLAY_AGAIN, ROWS, TICK_MS, TIME_OUT_SECS } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
-import { post } from './utils';
+import { post, retile } from './utils';
 
 export const log = (value) => console.log($state.snapshot(value));
 
@@ -107,3 +107,20 @@ export const onOver = (over) => {
 };
 
 export const elapsedSecs = () => Math.round(((ss.ticks || 0) * TICK_MS) / 1000);
+
+export const onSizeSet = (size, tileSets) => {
+    ss.size = size;
+
+    const doRetile = !tileSets;
+
+    if (doRetile) {
+        tileSets = retile(size);
+    }
+
+    ss.tileSets = tileSets;
+    setStep(1);
+    setSecs(0);
+    setOver(null);
+    setPaused(true);
+    setAlert({ alert: null });
+};

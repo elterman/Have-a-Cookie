@@ -1,4 +1,5 @@
-import { COLS } from './const';
+import { isNumber, sample, sampleSize } from 'lodash-es';
+import { COIN, COLS, FLAGS, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP } from './const';
 
 export const windowSize = () => {
     const d = document,
@@ -59,3 +60,54 @@ export const range = (n) => [...Array(n + 1).keys()].slice(1);
 export const cellId = (cell) => `cell-${cell.col}-${cell.row}`;
 
 export const cellIndex = (cob) => (cob.row - 1) * COLS + cob.col - 1;
+
+const shuffle = (size, coinIndex = null) => {
+    const dim = size + MIN_GAME_DIMENSION - 1;
+    const tileCount = dim * dim;
+    let rng = range(tileCount).map(i => i - 1);
+    let flagCount = FLAGS[size - 1];
+    let indexes;
+
+    if (isNumber(coinIndex)) {
+        rng = rng.filter(rng, i => i !== coinIndex);
+        flagCount -= 1;
+        indexes = sampleSize(rng, flagCount);
+    } else {
+        indexes = sampleSize(rng, flagCount);
+        coinIndex = sample(indexes);
+    }
+
+    const tiles = [];
+    rng = range(dim);
+
+    for (const row of rng) {
+        for (const col of rng) {
+            const tile = { row, col };
+            const i = (row - 1) * dim + (col - 1);
+
+            if (i === coinIndex) {
+                tile.item = COIN;
+            } else if (indexes.includes(i)) {
+                tile.item = TRAP;
+            }
+
+            tiles.push(tile);
+        }
+    }
+
+    return { tiles, coinIndex };
+};
+
+export const retile = size => {
+    const sets = [];
+
+    let { tiles, coinIndex } = shuffle(size);
+    sets.push(tiles);
+
+    for (let i = 0; i < TILE_SET_SIZE - 1; i++) {
+        tiles = shuffle(size, coinIndex).tiles;
+        sets.push(tiles);
+    }
+
+    return sets;
+};
