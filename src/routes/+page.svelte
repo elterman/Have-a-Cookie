@@ -1,6 +1,7 @@
 <script>
     import Cookie from '$lib/images/Cookie.webp';
     import Toast from '$lib/images/Toast.webp';
+    import Flag from '$lib/images/Flag.webp';
     import Frame from '$lib/images/Frame.webp';
     import GamePage from '../Game Page.svelte';
     import Intro from '../Intro.svelte';
@@ -57,6 +58,7 @@
         <div class="content" style="scale: {scale};">
             <img class="frame" src={Frame} alt="" />
             {#if ss.intro}
+                <img class="flag" src={Flag} alt="" width={400} transition:fade={{ duration: 100 }} />
                 <img class="coin" src={Cookie} alt="" width={200} transition:fade={{ duration: 100 }} />
                 <img class="death" src={Toast} alt="" width={200} transition:fade={{ duration: 100 }} />
             {/if}
@@ -159,6 +161,13 @@
         touch-action: none;
     }
 
+    .flag {
+        grid-area: 1/1;
+        touch-action: none;
+        place-self: center;
+        filter: drop-shadow(0 0 10px black) opacity(0.4) grayscale(0.75);
+    }
+
     .coin {
         grid-area: 1/1;
         touch-action: none;
@@ -189,6 +198,7 @@
         gap: 3px;
         opacity: 0.8;
     }
+
     @font-face {
         font-family: Cooper;
         src: url('$lib/fonts/COOPBL.TTF');
