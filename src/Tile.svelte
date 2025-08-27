@@ -3,9 +3,10 @@
     import Coin from '$lib/images/Coin.webp';
     import Trap from '$lib/images/Death.webp';
     import Flag from '$lib/images/Flag.webp';
-    import { BOARD_SIZE, COIN, MIN_GAME_DIMENSION, TRAP } from './const';
-    import { ss } from './state.svelte';
+    import { BOARD_SIZE, COIN, LOST, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP, WON } from './const';
+    import { _stats, ss } from './state.svelte';
     import { samePos } from './utils';
+    import { _sound } from './sound.svelte';
 
     const { tile } = $props();
     const { row, col, item } = $derived(tile);
@@ -20,9 +21,56 @@
     const coinSize = $derived(width / 1.7);
     const trapSize = $derived(width / 1.9);
     const sel = $derived(ss.over && ss.selected && samePos(ss.selected, tile));
+    let pressed = $state();
+    let _this = $state();
+
+    const processClick = () => {
+        ss.selected = { row, col };
+
+        if (!item) {
+            const nextStep = ss.step === TILE_SET_SIZE ? 1 : ss.step + 1;
+            ss.step = nextStep;
+
+            return;
+        }
+
+        ss.over = item === TRAP ? LOST : WON;
+        _sound.play(ss.over);
+
+        const { plays } = _stats;
+        // const pnts = over === LOST ? 0 : soloPoints;
+
+        // setStats({ plays: plays + 1, total_points: total_points + pnts, best_points: Math.max(best_points, pnts) });
+
+        // if (best_points > 10 && pnts > best_points) {
+        //     setAlert({ alert: S_BEST_SCORE });
+        // }
+    };
+
+    $effect(() => {
+        const onTransitionEnd = () => {
+            if (pressed) {
+                pressed = false;
+            } else {
+                processClick();
+            }
+        };
+
+        _this.addEventListener('transitionend', onTransitionEnd);
+        return () => this.removeEventListener('transitionend', onTransitionEnd);
+    });
+
+    const onPointerDown = () => {
+        pressed = true;
+    };
 </script>
 
-<div {id} class="tile {ss.puased || ss.over ? 'ro' : ''}" style="grid-area: {area}; width: {width}px; height: {width}px;">
+<div
+    {id}
+    bind:this={_this}
+    class="tile {ss.puased || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
+    style="grid-area: {area}; width: {width}px; height: {width}px;"
+    onpointerdown={onPointerDown}>
     <div class={`tile-inner${sel ? '-selected' : ''}`}>
         <img class="plate" src={Plate} alt="" width="100%" height="100%" />
         {#if !ss.paused}
@@ -50,6 +98,7 @@
         box-sizing: border-box;
         padding: 2.3%;
         cursor: pointer;
+        transition: scale 0.1s;
     }
 
     .tile-inner,
@@ -74,5 +123,9 @@
 
     .plate {
         grid-area: 1/1;
+    }
+
+    .pressed {
+        scale: 0.7;
     }
 </style>

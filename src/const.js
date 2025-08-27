@@ -22,3 +22,5 @@ export const COIN = 1;
 export const TRAP = -1;
 export const TILE_SET_SIZE = 25;
 export const BOARD_SIZE = 400;
+export const WON = 'won';
+export const LOST = 'lost';
