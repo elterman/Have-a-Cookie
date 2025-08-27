@@ -73,26 +73,24 @@
     class="tile {ss.puased || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
-    <div class="tile-inner">
-        <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
-        {#if !ss.paused}
-            {#snippet content(img, sz)}
-                {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
-                <div class="tile-content">
-                    <img src={img} alt="" width={sz} style="filter: {filter};" />
-                </div>
-            {/snippet}
-            {#if coin}
-                {@render content(Coin, coinSize)}
-            {/if}
-            {#if trap}
-                {@render content(Trap, trapSize)}
-            {/if}
-            {#if flag}
-                {@render content(Flag, flagSize)}
-            {/if}
+    <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
+    {#if !ss.paused}
+        {#snippet content(img, sz)}
+            {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
+            <div class="tile-content">
+                <img src={img} alt="" width={sz} style="filter: {filter};" />
+            </div>
+        {/snippet}
+        {#if coin}
+            {@render content(Coin, coinSize)}
         {/if}
-    </div>
+        {#if trap}
+            {@render content(Trap, trapSize)}
+        {/if}
+        {#if flag}
+            {@render content(Flag, flagSize)}
+        {/if}
+    {/if}
 </div>
 
 <style>
@@ -102,15 +100,6 @@
         padding: 2.3%;
         cursor: pointer;
         transition: scale 0.1s;
-    }
-
-    .tile-inner,
-    .tile-inner-selected {
-        display: grid;
-    }
-
-    .tile-inner-selected {
-        /* filter: sepia(1) saturate(3); */
     }
 
     .tile-content {

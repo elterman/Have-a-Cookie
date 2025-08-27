@@ -67,6 +67,7 @@
     }
 
     .title-panel {
+        grid-area: 1/1;
         display: grid;
         place-items: center;
         filter: drop-shadow(0px 2px 5px black);
@@ -81,6 +82,7 @@
     }
 
     .content {
+        grid-area: 2/1;
         font-size: 21px;
         display: grid;
         align-content: start;
@@ -89,6 +91,7 @@
     }
 
     .buttons {
+        grid-area: 3/1;
         place-self: center;
         filter: drop-shadow(0 2px 5px black);
     }

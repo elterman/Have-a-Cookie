@@ -1,10 +1,13 @@
 <script>
+    import Cookie from '$lib/images/Cookie.webp';
+    import Toast from '$lib/images/Toast.webp';
     import Frame from '$lib/images/Frame.webp';
     import GamePage from '../Game Page.svelte';
     import Intro from '../Intro.svelte';
     import Splash from '../Splash.svelte';
     import { ss } from '../state.svelte';
     import { post, windowSize } from '../utils';
+    import { fade } from 'svelte/transition';
 
     let scale = $state(1);
 
@@ -53,6 +56,10 @@
     {:else}
         <div class="content" style="scale: {scale};">
             <img class="frame" src={Frame} alt="" />
+            {#if ss.intro}
+                <img class="coin" src={Cookie} alt="" width={200} transition:fade={{ duration: 100 }} />
+                <img class="death" src={Toast} alt="" width={200} transition:fade={{ duration: 100 }} />
+            {/if}
             <GamePage />
             <Intro />
             {#if ss.intro}
@@ -152,9 +159,28 @@
         touch-action: none;
     }
 
+    .coin {
+        grid-area: 1/1;
+        touch-action: none;
+        justify-self: end;
+        filter: drop-shadow(0 0 10px black);
+        transform: translate(45%, -45%);
+        clip-path: inset(45% 45% 0 0);
+    }
+
+    .death {
+        grid-area: 1/1;
+        touch-action: none;
+        align-self: end;
+        filter: drop-shadow(0 0 10px black);
+        transform: translate(-35%, 35%);
+        clip-path: inset(0 0 35% 35%);
+    }
+
     .disclaimer {
         grid-area: 1/1;
-        place-self: center;
+        place-self: center end;
+        margin-right: 25px;
         /* font-family: Roboto Mono; */
         font-size: 10px;
         transform: translateY(370px);
