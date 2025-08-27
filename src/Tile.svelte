@@ -28,7 +28,7 @@
         {#if !ss.paused}
             {#snippet content(img, sz)}
                 <div class="tile-content">
-                    <img src={img} alt="" width={sz} style="filter: 'drop-shadow(0 0 {sz / 10}px black);" />
+                    <img src={img} alt="" width={sz} style="filter: drop-shadow(0 0 {sz / 10}px black);" />
                 </div>
             {/snippet}
             {#if coin}

@@ -23,7 +23,7 @@
         ${li}${toast}Toasts</span> may move with each tap, but the ${cookie}cookie</span> stays in the same spot.</li>
         </ul>`;
 
-    const resume = $derived(ss.cells.length && !ss.over);
+    const resume = $derived(ss.ticks && !ss.over);
     const label = $derived(resume ? PROMPT_RESUME : PROMPT_START);
 
     const onClick = () => {

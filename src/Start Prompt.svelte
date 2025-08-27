@@ -9,11 +9,11 @@
     import SizeXL from '$lib/images/Size XL.webp';
     import BlackSizeXS from '$lib/images/Size XS Black.webp';
     import SizeXS from '$lib/images/Size XS.webp';
-    import Resume from '$lib/images/Resume.webp';
-    import Start from '$lib/images/Start.webp';
-    import { onSizeSet } from './shared.svelte';
+    import { fade } from 'svelte/transition';
+    import PromptPanel from './Prompt Panel.svelte';
+    import { onSizeSet, persist, startTimer } from './shared.svelte';
     import { _sound } from './sound.svelte';
-    import { ss } from './state.svelte';
+    import { _prompt, _stats, ss } from './state.svelte';
     import ToolButton from './Tool Button.svelte';
 
     const sizes = [
@@ -33,37 +33,50 @@
     const onStartOrResume = () => {
         ss.paused = false;
 
-        if (ss.secs === 0) {
+        if (ss.ticks === 0) {
+            if (!_sound.musicPlayed) {
+                _sound.playMusic();
+            }
+
             _sound.play('dice');
+
+            _stats.plays += 1;
+            persist();
+
+            startTimer();
         }
     };
+
+    const show = $derived(ss.paused && _prompt.opacity === 0);
 </script>
 
-<div class="start-prompt">
-    {#if ss.secs === 0}
-        <div class="sizes">
-            {#each sizes as sob, i (i)}
-                {@const current = i + 1 === ss.size}
-                <div class={current ? 'ro' : ''}>
-                    <ToolButton id={`size-${i + 1}`} src={sob[current ? 0 : 1]} onClick={() => onSizeSelect(i + 1)} />
-                </div>
-            {/each}
-        </div>
-        <div class="start">
-            <ToolButton id="start" src={Start} width={100} onClick={onStartOrResume} />
-        </div>
-    {:else}
-        <div class="start">
-            <ToolButton id="start" src={Resume} width={100} onClick={onStartOrResume} />
-        </div>
-    {/if}
-</div>
+{#if show}
+    <div class="start-prompt" transition:fade>
+        {#if ss.ticks === 0}
+            <div class="sizes">
+                {#each sizes as sob, i (i)}
+                    {@const current = i + 1 === ss.size}
+                    <div class={current ? 'ro' : ''}>
+                        <ToolButton id={`size-${i + 1}`} src={sob[current ? 0 : 1]} onClick={() => onSizeSelect(i + 1)} />
+                    </div>
+                {/each}
+            </div>
+            <div class="start">
+                <PromptPanel ops={[{ label: 'START', style: 'font-size: 28px;', onClick: onStartOrResume }]} />
+            </div>
+        {:else}
+            <div class="start">
+                <PromptPanel ops={[{ label: 'RESUME', style: 'font-size: 36px;', onClick: onStartOrResume }]} />
+            </div>
+        {/if}
+    </div>
+{/if}
 
 <style>
     .start-prompt {
-        grid-area: 3/1;
+        grid-area: 4/1;
         display: grid;
-        gap: 20px;
+        gap: 15px;
         z-index: 1;
         place-content: center;
     }

@@ -16,32 +16,10 @@ export const showIntro = (value, plop = true) => {
 
     plop && _sound.play('plop');
     ss.intro = true;
+    ss.paused = true;
 };
 
-export const onStart = () => {
-    if (!_sound.musicPlayed) {
-        _sound.playMusic();
-    }
-
-    _sound.play('dice');
-
-    delete ss.over;
-    delete ss.selected;
-    ss.score = 0;
-
-    const cells = [];
-
-    for (let row = 1; row <= ROWS; row++) {
-        for (let col = 1; col <= COLS; col++) {
-            cells.push({ row, col, value: sample(BILLS), back: random(0, 1) });
-        }
-    }
-
-    ss.cells = cells;
-
-    _stats.plays += 1;
-    persist();
-
+export const startTimer = () => {
     stopTimer();
     ss.ticks = 0;
 
@@ -61,7 +39,7 @@ export const selectedCells = () => ss.cells.filter((c) => c.selected);
 export const selectedValueCells = () => ss.cells.filter((c) => c.value && c.value === ss.selected);
 
 const onTick = () => {
-    if (ss.intro) {
+    if (ss.paused) {
         return;
     }
 
@@ -71,11 +49,6 @@ const onTick = () => {
     if (secs >= TIME_OUT_SECS) {
         onOver('lost');
         return;
-    }
-
-    if (secs > 10 && secs % 2 === 0) {
-        const i = random(1, ROWS * COLS);
-        ss.cells[i - 1].flip = true;
     }
 };
 
@@ -119,7 +92,7 @@ export const onSizeSet = (size, tileSets) => {
 
     ss.tileSets = tileSets;
     ss.step = 1;
-    ss.secs = 0;
+    ss.ticks = 0;
     ss.over = null;
     ss.paused = true;
     _prompt.id = null;

@@ -33,10 +33,10 @@
 <style>
     .button {
         cursor: pointer;
-        /* color: var(--gold); */
     }
 
     .button:hover {
-        /* text-decoration: underline; */
+        filter: saturate(2);
     }
+
 </style>
