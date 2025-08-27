@@ -95,5 +95,15 @@
 
     .start {
         filter: drop-shadow(0 2px 5px black);
+        animation: pulse 0.25s alternate infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(0.9);
+        }
     }
 </style>
