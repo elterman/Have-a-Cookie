@@ -12,14 +12,13 @@
     const cookie = '<span class="cookie">';
     const napkin = '<span class="cookie">';
     // const napkin = '<span style="color: coral;">';
-    const toast = '<span class="toast">';
-    const click = tapOrClick();
+    const toast = '<span class="toast" style="filter: brightness(1.7) saturate(1.2)">';
 
     const CONTENT = `
         <span>How quickly can you find the delicious ${cookie}cookie</span> hiding under a ${napkin}napkin?</span>
         ${ul}
         ${li}${napkin}Napkins</span> mark either the ${cookie}cookie</span> or a ${toast}burnt toast</span>.</li>
-        ${li}${click} a ${napkin}napkin</span> if you think it hides the ${cookie}cookie</span>. Otherwise, tap an empty plate.</li>
+        ${li}Tap a ${napkin}napkin</span> if you think it hides the ${cookie}cookie</span>. Otherwise, tap an empty plate.</li>
         ${li}${toast}Toasts</span> may move with each tap, but the ${cookie}cookie</span> stays in the same spot.</li>
         </ul>`;
 
