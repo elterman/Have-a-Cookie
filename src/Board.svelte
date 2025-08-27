@@ -21,6 +21,6 @@
     }
 
     .paused {
-        filter: brightness(0.45);
+        /* filter: brightness(0.45); */
     }
 </style>

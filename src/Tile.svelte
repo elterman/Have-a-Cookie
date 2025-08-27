@@ -1,5 +1,7 @@
 <script>
     import Plate from '$lib/images/Plate.webp';
+    import BlackPlate from '$lib/images/Plate Black.webp';
+    import WhitePlate from '$lib/images/Plate White.webp';
     import Coin from '$lib/images/Coin.webp';
     import Trap from '$lib/images/Death.webp';
     import Flag from '$lib/images/Flag.webp';
@@ -71,12 +73,13 @@
     class="tile {ss.puased || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
-    <div class={`tile-inner${sel ? '-selected' : ''}`}>
-        <img class="plate" src={Plate} alt="" width="100%" height="100%" />
+    <div class="tile-inner">
+        <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
         {#if !ss.paused}
             {#snippet content(img, sz)}
+                {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
                 <div class="tile-content">
-                    <img src={img} alt="" width={sz} style="filter: drop-shadow(0 0 {sz / 10}px black);" />
+                    <img src={img} alt="" width={sz} style="filter: {filter};" />
                 </div>
             {/snippet}
             {#if coin}
@@ -107,7 +110,7 @@
     }
 
     .tile-inner-selected {
-        filter: sepia(1) saturate(3);
+        /* filter: sepia(1) saturate(3); */
     }
 
     .tile-content {
