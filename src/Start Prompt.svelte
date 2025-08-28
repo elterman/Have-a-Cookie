@@ -10,12 +10,12 @@
     import BlackSizeXS from '$lib/images/Size XS Black.webp';
     import SizeXS from '$lib/images/Size XS.webp';
     import { fade } from 'svelte/transition';
+    import { PROMPT_RESUME, PROMPT_START } from './const';
     import PromptPanel from './Prompt Panel.svelte';
     import { onSizeSet, onStartOrResume } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, ss } from './state.svelte';
     import ToolButton from './Tool Button.svelte';
-    import { PROMPT_RESUME, PROMPT_START } from './const';
 
     const sizes = [
         [SizeXS, BlackSizeXS],

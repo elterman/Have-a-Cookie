@@ -5,6 +5,7 @@
     import BlackPlate from '$lib/images/Plate Black.webp';
     import WhitePlate from '$lib/images/Plate White.webp';
     import Plate from '$lib/images/Plate.webp';
+    import { scale } from 'svelte/transition';
     import { BOARD_SIZE, COIN, LOST, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP, WON } from './const';
     import { onOver } from './shared.svelte';
     import { _sound } from './sound.svelte';
@@ -69,7 +70,7 @@
     {#if !ss.paused || ss.over}
         {#snippet content(img, sz)}
             {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
-            <div class="tile-content">
+            <div class="tile-content" transition:scale={{ duration: 100, opacity: 1 }}>
                 <img src={img} alt="" width={sz} style="filter: {filter};" />
             </div>
         {/snippet}
@@ -97,7 +98,6 @@
     .tile-content {
         grid-area: 1/1;
         place-self: center;
-        z-index: 3;
         display: grid;
     }
 
