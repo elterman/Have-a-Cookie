@@ -10,7 +10,7 @@
     import { onOver } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
-    import { samePos } from './utils';
+    import { post, samePos } from './utils';
     import { sample } from 'lodash-es';
 
     const { tile } = $props();
@@ -35,7 +35,7 @@
 
         if (!item) {
             const nextStep = ss.step === TILE_SET_SIZE ? 1 : ss.step + 1;
-            ss.step = nextStep;
+            post(() => ss.step = nextStep);
 
             return;
         }
