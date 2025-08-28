@@ -8,9 +8,11 @@ export const PROMPT_BACK_TO_GAME = 'BACK TO GAME';
 export const PROMPT_START = 'START';
 export const PROMPT_RESUME = 'RESUME';
 export const PROMPT_NO = 'NO';
+export const CHEER_DELICIOUS = 'DELICIOUS!';
+export const CHEER_TOAST = 'YOU ARE TOAST!';
+export const CHEER_BEST_SCORE = 'BEST SCORE!';
 export const TICK_MS = 500;
 export const TIME_OUT_SECS = 3959;
-
 export const FLAGS = [5, 9, 13, 17, 21];
 export const SECS = [25, 33, 41, 49, 57];
 export const DEFAULT_GAME_SIZE = 1;

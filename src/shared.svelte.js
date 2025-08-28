@@ -1,4 +1,4 @@
-import { APP_STATE, PROMPT_PLAY_AGAIN, TICK_MS, TIME_OUT_SECS, WON } from './const';
+import { APP_STATE, CHEER_BEST_SCORE, CHEER_DELICIOUS, CHEER_TOAST, PROMPT_PLAY_AGAIN, TICK_MS, TIME_OUT_SECS, WON } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
 import { post, retile } from './utils';
@@ -39,7 +39,7 @@ export const onSizeSet = (size, tileSets) => {
 
     if (!tileSets) {
         ss.tileSets = null;
-        
+
         post(() => {
             const sets = retile(size);
             ss.tileSets = sets;
@@ -137,12 +137,20 @@ export const onOver = (over) => {
 
         if (_stats.best_secs === 0 || secs < _stats.best_secs) {
             _stats.best_secs = secs;
+
+            if (_stats.won > 1) {
+                _prompt.set(CHEER_BEST_SCORE);
+            }
+        } else {
+            _prompt.set(CHEER_DELICIOUS);
         }
 
         persist();
+    } else {
+        _prompt.set(CHEER_TOAST);
     }
 
-    post(() => _prompt.set(PROMPT_PLAY_AGAIN), 1000);
+    post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
 };
 
 export const elapsedSecs = () => Math.round(((ss.ticks || 0) * TICK_MS) / 1000);
