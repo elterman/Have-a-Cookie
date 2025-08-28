@@ -11,6 +11,7 @@
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
     import { samePos } from './utils';
+    import { sample } from 'lodash-es';
 
     const { tile } = $props();
     const { row, col, item } = $derived(tile);
@@ -27,6 +28,7 @@
     const sel = $derived(ss.over && ss.selected && samePos(ss.selected, tile));
     let pressed = $state();
     let _this = $state();
+    let flip = $derived(ss.flip ? sample(['flip-x', 'flip-y']) : '');
 
     const onClick = () => {
         ss.selected = { row, col };
@@ -67,7 +69,7 @@
 <div
     {id}
     bind:this={_this}
-    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''} {ss.over === LOST ? 'shake' : ''} {ss.flip ? 'flipped' : ''}"
+    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''} {ss.over === LOST ? 'shake' : ''} {flip}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
@@ -100,7 +102,7 @@
         cursor: pointer;
         transition:
             scale 0.1s,
-            linear transform 0.5s;
+            transform 0.5s ease-out;
     }
 
     .content-wrapper {
@@ -145,7 +147,11 @@
         }
     }
 
-    .flipped {
+    .flip-x {
         transform: rotateX(90deg);
+    }
+
+    .flip-y {
+        transform: rotateY(90deg);
     }
 </style>

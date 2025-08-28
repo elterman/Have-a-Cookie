@@ -1,7 +1,7 @@
 <script>
     import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onSizeSet, persist } from './shared.svelte';
+    import { onSizeSelect, onSizeSet, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
     import { post } from './utils';
@@ -43,18 +43,12 @@
     const style = `font-size: ${28}px;`;
 
     const onPlayAgain = () => {
-        _sound.play('plop');
         delete ss.over;
         ss.paused = true;
         ss.ticks = 0;
         ss.startPrompt = true;
 
-        ss.flip = true;
-
-        post(() => {
-            onSizeSet(ss.size);
-            post(() => delete ss.flip, 100);
-        }, 500);
+        onSizeSelect(ss.size);
     };
 </script>
 

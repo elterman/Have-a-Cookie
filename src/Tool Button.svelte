@@ -1,12 +1,12 @@
 <script>
     import { post } from './utils';
 
-    const { id, src, width = 50, disabled, onClick } = $props();
+    const { id, src, width = 50, disabled, ro, onClick } = $props();
 
     let scale = $state(1);
     let timer3 = $state(false);
 
-    const classes = $derived(['button-base no-highlight button', { disabled }]);
+    const classes = $derived(['button-base no-highlight button', { disabled }, { ro }]);
     const style = $derived(`width: ${width}px; height: ${width}px; transform: scale(${scale})`);
 
     $effect(() => {
@@ -62,10 +62,13 @@
     }
 
     .disabled {
-        cursor: initial;
         pointer-events: none;
         filter: grayscale(1);
         opacity: 0.5;
+    }
+
+    .ro {
+        pointer-events: none;
     }
 
     .button:focus {

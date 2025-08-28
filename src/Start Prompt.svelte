@@ -12,10 +12,11 @@
     import { fade } from 'svelte/transition';
     import { PROMPT_RESUME, PROMPT_START } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onSizeSet, onStartOrResume } from './shared.svelte';
+    import { onSizeSelect, onSizeSet, onStartOrResume } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, ss } from './state.svelte';
     import ToolButton from './Tool Button.svelte';
+    import { post } from './utils';
 
     const sizes = [
         [SizeXS, BlackSizeXS],
@@ -24,12 +25,6 @@
         [SizeL, BlackSizeL],
         [SizeXL, BlackSizeXL],
     ];
-
-    const onSizeSelect = (op) => {
-        _sound.play('tap');
-
-        onSizeSet(op);
-    };
 </script>
 
 {#if ss.startPrompt && !_prompt.id}
@@ -44,7 +39,7 @@
                 {#each sizes as sob, i (i)}
                     {@const current = i + 1 === ss.size}
                     <div class={current ? 'ro' : ''}>
-                        <ToolButton id={`size-${i + 1}`} src={sob[current ? 0 : 1]} onClick={() => onSizeSelect(i + 1)} />
+                        <ToolButton id={`size-${i + 1}`} src={sob[current ? 0 : 1]} onClick={() => onSizeSelect(i + 1)} ro={ss.flip}/>
                     </div>
                 {/each}
             </div>

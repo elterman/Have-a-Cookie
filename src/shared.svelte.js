@@ -144,4 +144,15 @@ export const onOver = (over) => {
     post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
 };
 
+export const onSizeSelect = (op) => {
+    _sound.play('plop');
+    ss.flip = true;
+
+    post(() => {
+        onSizeSet(op);
+        post(() => delete ss.flip, 50);
+    }, 500);
+
+};
+
 export const elapsedSecs = () => Math.round(((ss.ticks || 0) * TICK_MS) / 1000);
