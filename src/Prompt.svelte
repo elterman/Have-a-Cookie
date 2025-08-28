@@ -1,10 +1,9 @@
 <script>
     import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onSizeSelect, onSizeSet, persist } from './shared.svelte';
+    import { onSizeSelect, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
-    import { post } from './utils';
 
     const label = $derived(_prompt.id);
 

@@ -21,7 +21,7 @@
     });
 </script>
 
-<div bind:this={_this} class="board">
+<div bind:this={_this} class="board {ss.paused ? 'paused' : ''}">
     {#each tiles as tile (tile.id)}
         <Tile {tile} />
     {/each}
@@ -34,5 +34,10 @@
         place-self: center;
         z-index: 1;
         filter: drop-shadow(0 4px 4px #00000080);
+        transition: opacity 0.5s;
+    }
+
+    .paused {
+        opacity: 0.3;
     }
 </style>
