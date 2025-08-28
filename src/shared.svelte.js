@@ -76,15 +76,6 @@ export const onStartOrResume = () => {
     }
 };
 
-export const onPlayAgain = () => {
-    _sound.play('plop');
-    delete ss.over;
-    ss.paused = true;
-    ss.ticks = 0;
-    onSizeSet(ss.size);
-    ss.startPrompt = true;
-};
-
 export const startTimer = () => {
     stopTimer();
     ss.ticks = 0;

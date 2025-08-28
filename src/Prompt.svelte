@@ -1,9 +1,10 @@
 <script>
     import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onPlayAgain, onSizeSet, persist } from './shared.svelte';
+    import { onSizeSet, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
+    import { post } from './utils';
 
     const label = $derived(_prompt.id);
 
@@ -40,6 +41,16 @@
     };
 
     const style = `font-size: ${28}px;`;
+
+    const onPlayAgain = () => {
+        _sound.play('plop');
+        delete ss.over;
+        ss.paused = true;
+        ss.ticks = 0;
+        ss.startPrompt = true;
+
+        post(() => onSizeSet(ss.size), 400);
+    };
 </script>
 
 <div id="prompt" class="prompt {_prompt.opacity ? 'visible' : ''}">
