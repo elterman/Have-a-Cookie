@@ -1,5 +1,4 @@
-import { random, sample } from 'lodash-es';
-import { APP_STATE, BILLS, COLS, PROMPT_PLAY_AGAIN, ROWS, TICK_MS, TIME_OUT_SECS } from './const';
+import { APP_STATE, PROMPT_PLAY_AGAIN, TICK_MS, TIME_OUT_SECS, WON } from './const';
 import { _sound } from './sound.svelte';
 import { _prompt, _stats, ss } from './state.svelte';
 import { post, retile } from './utils';
@@ -12,11 +11,34 @@ export const persist = () => {
 };
 
 export const showIntro = (value, plop = true) => {
-    _prompt.opacity = 0;
+    // _prompt.set(null);
 
     plop && _sound.play('plop');
     ss.intro = true;
     ss.paused = true;
+};
+
+export const onStartOrResume = () => {
+    delete ss.paused;
+    delete ss.startPrompt;
+
+    if (ss.ticks === 0) {
+        _sound.play('dice');
+
+        _stats.plays += 1;
+        persist();
+
+        startTimer();
+    }
+};
+
+export const onPlayAgain = () => {
+    _sound.play('plop');
+    delete ss.over;
+    ss.paused = true;
+    ss.ticks = 0;
+    onSizeSet(ss.size);
+    ss.startPrompt = true;
 };
 
 export const startTimer = () => {
@@ -24,12 +46,14 @@ export const startTimer = () => {
     ss.ticks = 0;
 
     post(() => {
-        onTick();
-        ss.timer = setInterval(onTick, TICK_MS);
+        if (!ss.over) {
+            onTick();
+            ss.timer = setInterval(onTick, TICK_MS);
+        }
     }, 1000);
 };
 
-const stopTimer = () => {
+export const stopTimer = () => {
     clearInterval(ss.timer);
     delete ss.timer;
 };
@@ -61,16 +85,14 @@ export const onOver = (over) => {
     ss.over = over;
     stopTimer();
 
-    if (over === 'won') {
+    if (over === WON) {
         _stats.won += 1;
         const secs = elapsedSecs();
 
         _stats.total_secs += secs;
-        _stats.total_points += ss.score;
 
         if (_stats.best_secs === 0 || secs < _stats.best_secs) {
             _stats.best_secs = secs;
-            _stats.best_points = ss.score;
         }
 
         persist();
@@ -84,16 +106,15 @@ export const elapsedSecs = () => Math.round(((ss.ticks || 0) * TICK_MS) / 1000);
 export const onSizeSet = (size, tileSets) => {
     ss.size = size;
 
-    const doRetile = !tileSets;
-
-    if (doRetile) {
-        tileSets = retile(size);
+    if (!tileSets) {
+        ss.tileSets = null;
+        post(() => ss.tileSets = retile(size));
     }
 
-    ss.tileSets = tileSets;
     ss.step = 1;
     ss.ticks = 0;
     ss.over = null;
     ss.paused = true;
-    _prompt.id = null;
+
+    _prompt.set(null);
 };

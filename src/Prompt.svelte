@@ -1,7 +1,7 @@
 <script>
     import { PROMPT_NO, PROMPT_PLAY_AGAIN, PROMPT_RESET_STATS } from './const';
     import PromptPanel from './Prompt Panel.svelte';
-    import { persist } from './shared.svelte';
+    import { onPlayAgain, onSizeSet, persist } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { _prompt, _stats, ss } from './state.svelte';
 
@@ -19,7 +19,7 @@
                 return;
             }
 
-            if (_prompt.opacity == 0) {
+            if (!ss.intro && _prompt.opacity == 0) {
                 _prompt.set(ss.over && !ss.flip ? PROMPT_PLAY_AGAIN : null);
             }
         };
@@ -34,21 +34,12 @@
         _stats.plays = ss.timer ? 1 : 0;
         _stats.won = 0;
         _stats.total_secs = 0;
-        _stats.total_points = 0;
         _stats.best_secs = 0;
-        _stats.best_points = 0;
 
         persist();
     };
 
-    const onPlayAgain = () => {
-        _sound.play('plop');
-
-        ss.flip = true;
-        ss.score = 0;
-    };
-
-    const style = `font-size: ${24}px;`;
+    const style = `font-size: ${28}px;`;
 </script>
 
 <div id="prompt" class="prompt {_prompt.opacity ? 'visible' : ''}">
@@ -57,7 +48,7 @@
     {:else if label === PROMPT_RESET_STATS}
         <PromptPanel
             ops={[
-                { label, style, onClick: onResetStats },
+                { label, style: 'font-size: 24px;', onClick: onResetStats },
                 { label: PROMPT_NO, style },
             ]} />
     {:else if label}

@@ -6,7 +6,7 @@
 </script>
 
 <div class="board {ss.paused ? 'paused' : ''}">
-    {#each tiles as tile (tile.row * 100 + tile.col)}
+    {#each tiles as tile (tile.id)}
         <Tile {tile} />
     {/each}
 </div>
@@ -18,9 +18,5 @@
         place-self: center;
         z-index: 1;
         filter: drop-shadow(0 4px 4px #00000080);
-    }
-
-    .paused {
-        /* filter: brightness(0.45); */
     }
 </style>

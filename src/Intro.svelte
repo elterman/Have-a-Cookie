@@ -1,11 +1,10 @@
 <script>
     import { fade } from 'svelte/transition';
-    import { DEFAULT_GAME_SIZE, PROMPT_RESUME, PROMPT_START } from './const';
+    import { DEFAULT_GAME_SIZE, PROMPT_BACK_TO_GAME, PROMPT_PLAY } from './const';
     import PromptPanel from './Prompt Panel.svelte';
+    import { onSizeSet } from './shared.svelte';
     import { _sound } from './sound.svelte';
     import { ss } from './state.svelte';
-    import { tapOrClick } from './utils';
-    import { onSizeSet } from './shared.svelte';
 
     const ul = '<ul style="margin: 15px 0 0 0;">';
     const li = '<li style="margin: 10px 0 0 -20px;">';
@@ -22,18 +21,22 @@
         ${li}${toast}Toasts</span> may move with each tap, but the ${cookie}cookie</span> stays in the same spot.</li>
         </ul>`;
 
-    const resume = $derived(ss.ticks && !ss.over);
-    const label = $derived(resume ? PROMPT_RESUME : PROMPT_START);
+    const resume = $derived(ss.ticks);
+    const label = $derived(resume ? PROMPT_BACK_TO_GAME : PROMPT_PLAY);
 
     const onClick = () => {
         _sound.play('plop');
+
+        if (!_sound.musicPlayed) {
+            _sound.playMusic();
+        }
 
         if (!ss.size) {
             onSizeSet(DEFAULT_GAME_SIZE);
         }
 
         if (!ss.over) {
-            ss.paused = true;
+            ss.startPrompt = true;
         }
 
         ss.intro = false;

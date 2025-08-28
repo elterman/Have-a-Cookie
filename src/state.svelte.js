@@ -2,9 +2,9 @@ import { PROMPT_TRANSITION } from './const';
 import { post } from './utils';
 
 export const ss = $state({
-    cells: [],
     intro: true,
-    score: 0,
+    paused: true,
+    startPrompt: true,
 });
 
 export const _prompt = $state({
@@ -35,7 +35,5 @@ export const _stats = $state({
     plays: 0,
     won: 0,
     total_secs: 0,
-    total_points: 0,
     best_secs: 0,
-    best_points: 0,
 });

@@ -13,7 +13,7 @@
 
     const onHelp = () => {
         if (ss.intro) {
-            showIntro(false);
+            ss.intro = false;
 
             if (ss.over) {
                 _prompt.set(PROMPT_PLAY_AGAIN);

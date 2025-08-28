@@ -1,5 +1,5 @@
 import { isNumber, sample, sampleSize } from 'lodash-es';
-import { COIN, COLS, FLAGS, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP } from './const';
+import { COIN, FLAGS, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP } from './const';
 
 export const windowSize = () => {
     const d = document,
@@ -57,10 +57,6 @@ export const post = (fn, ms) => setTimeout(fn, ms);
 
 export const range = (n) => [...Array(n + 1).keys()].slice(1);
 
-export const cellId = (cell) => `cell-${cell.col}-${cell.row}`;
-
-export const cellIndex = (cob) => (cob.row - 1) * COLS + cob.col - 1;
-
 const shuffle = (size, coinIndex = null) => {
     const dim = size + MIN_GAME_DIMENSION - 1;
     const tileCount = dim * dim;
@@ -91,6 +87,7 @@ const shuffle = (size, coinIndex = null) => {
                 tile.item = TRAP;
             }
 
+            tile.id = size * 100 + row * 10 + col;
             tiles.push(tile);
         }
     }

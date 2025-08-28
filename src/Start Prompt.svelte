@@ -11,10 +11,11 @@
     import SizeXS from '$lib/images/Size XS.webp';
     import { fade } from 'svelte/transition';
     import PromptPanel from './Prompt Panel.svelte';
-    import { onSizeSet, persist, startTimer } from './shared.svelte';
+    import { onSizeSet, onStartOrResume } from './shared.svelte';
     import { _sound } from './sound.svelte';
-    import { _prompt, _stats, ss } from './state.svelte';
+    import { ss } from './state.svelte';
     import ToolButton from './Tool Button.svelte';
+    import { PROMPT_RESUME, PROMPT_START } from './const';
 
     const sizes = [
         [SizeXS, BlackSizeXS],
@@ -29,29 +30,15 @@
 
         onSizeSet(op);
     };
-
-    const onStartOrResume = () => {
-        ss.paused = false;
-
-        if (ss.ticks === 0) {
-            if (!_sound.musicPlayed) {
-                _sound.playMusic();
-            }
-
-            _sound.play('dice');
-
-            _stats.plays += 1;
-            persist();
-
-            startTimer();
-        }
-    };
-
-    const show = $derived(ss.paused && _prompt.opacity === 0);
 </script>
 
-{#if show}
+{#if ss.startPrompt}
     <div class="start-prompt" transition:fade>
+        {#snippet prompt(label)}
+            <div class="start">
+                <PromptPanel ops={[{ label, style: 'font-size: 32px;', onClick: onStartOrResume }]} />
+            </div>
+        {/snippet}
         {#if ss.ticks === 0}
             <div class="sizes">
                 {#each sizes as sob, i (i)}
@@ -61,13 +48,9 @@
                     </div>
                 {/each}
             </div>
-            <div class="start">
-                <PromptPanel ops={[{ label: 'START', style: 'font-size: 28px;', onClick: onStartOrResume }]} />
-            </div>
+            {@render prompt(PROMPT_START)}
         {:else}
-            <div class="start">
-                <PromptPanel ops={[{ label: 'RESUME', style: 'font-size: 36px;', onClick: onStartOrResume }]} />
-            </div>
+            {@render prompt(PROMPT_RESUME)}
         {/if}
     </div>
 {/if}
@@ -94,6 +77,7 @@
     }
 
     .start {
+        place-self: center;
         filter: drop-shadow(0 2px 5px black);
         animation: pulse 0.25s alternate infinite ease-in-out;
     }
@@ -103,7 +87,7 @@
             transform: scale(1);
         }
         to {
-            transform: scale(0.9);
+            transform: scale(0.85);
         }
     }
 </style>

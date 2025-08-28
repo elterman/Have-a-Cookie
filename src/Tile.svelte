@@ -1,18 +1,19 @@
 <script>
-    import Plate from '$lib/images/Plate.webp';
-    import BlackPlate from '$lib/images/Plate Black.webp';
-    import WhitePlate from '$lib/images/Plate White.webp';
     import Coin from '$lib/images/Coin.webp';
     import Trap from '$lib/images/Death.webp';
     import Flag from '$lib/images/Flag.webp';
+    import BlackPlate from '$lib/images/Plate Black.webp';
+    import WhitePlate from '$lib/images/Plate White.webp';
+    import Plate from '$lib/images/Plate.webp';
     import { BOARD_SIZE, COIN, LOST, MIN_GAME_DIMENSION, TILE_SET_SIZE, TRAP, WON } from './const';
-    import { _stats, ss } from './state.svelte';
-    import { samePos } from './utils';
+    import { onOver } from './shared.svelte';
     import { _sound } from './sound.svelte';
+    import { ss } from './state.svelte';
+    import { samePos } from './utils';
 
     const { tile } = $props();
     const { row, col, item } = $derived(tile);
-    const id = $derived(`tile-${row * 10 + col}`);
+    const id = $derived(tile.id);
     const area = $derived(`${row}/${col}`);
     const flag = $derived(!ss.over && (item === COIN || item === TRAP));
     const coin = $derived(ss.over && item === COIN);
@@ -26,7 +27,7 @@
     let pressed = $state();
     let _this = $state();
 
-    const processClick = () => {
+    const onClick = () => {
         ss.selected = { row, col };
 
         if (!item) {
@@ -36,17 +37,7 @@
             return;
         }
 
-        ss.over = item === TRAP ? LOST : WON;
-        _sound.play(ss.over);
-
-        const { plays } = _stats;
-        // const pnts = over === LOST ? 0 : soloPoints;
-
-        // setStats({ plays: plays + 1, total_points: total_points + pnts, best_points: Math.max(best_points, pnts) });
-
-        // if (best_points > 10 && pnts > best_points) {
-        //     setAlert({ alert: S_BEST_SCORE });
-        // }
+        onOver(item === COIN ? WON : LOST);
     };
 
     $effect(() => {
@@ -54,15 +45,16 @@
             if (pressed) {
                 pressed = false;
             } else {
-                processClick();
+                onClick();
             }
         };
 
         _this.addEventListener('transitionend', onTransitionEnd);
-        return () => this.removeEventListener('transitionend', onTransitionEnd);
+        return () => _this.removeEventListener('transitionend', onTransitionEnd);
     });
 
     const onPointerDown = () => {
+        _sound.play('tap');
         pressed = true;
     };
 </script>
@@ -70,11 +62,11 @@
 <div
     {id}
     bind:this={_this}
-    class="tile {ss.puased || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
+    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
-    {#if !ss.paused}
+    {#if !ss.paused || ss.over}
         {#snippet content(img, sz)}
             {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
             <div class="tile-content">
