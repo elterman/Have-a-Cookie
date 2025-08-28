@@ -68,21 +68,23 @@
     onpointerdown={onPointerDown}>
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
     {#if !ss.paused || ss.over}
-        {#snippet content(img, sz)}
-            {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
-            <div class="tile-content" transition:scale={{ duration: 100, opacity: 1 }}>
-                <img src={img} alt="" width={sz} style="filter: {filter};" />
-            </div>
-        {/snippet}
-        {#if coin}
-            {@render content(Coin, coinSize)}
-        {/if}
-        {#if trap}
-            {@render content(Trap, trapSize)}
-        {/if}
-        {#if flag}
-            {@render content(Flag, flagSize)}
-        {/if}
+        <div class="content-wrapper" transition:scale={{ opacity: 1 }}>
+            {#snippet content(img, sz)}
+                {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
+                <div class="content" transition:scale={{ duration: ss.over ? 400 : 100, opacity: 1 }}>
+                    <img src={img} alt="" width={sz} style="filter: {filter};" />
+                </div>
+            {/snippet}
+            {#if coin}
+                {@render content(Coin, coinSize)}
+            {/if}
+            {#if trap}
+                {@render content(Trap, trapSize)}
+            {/if}
+            {#if flag}
+                {@render content(Flag, flagSize)}
+            {/if}
+        </div>
     {/if}
 </div>
 
@@ -95,7 +97,12 @@
         transition: scale 0.1s;
     }
 
-    .tile-content {
+    .content-wrapper {
+        grid-area: 1/1;
+        display: grid;
+    }
+
+    .content {
         grid-area: 1/1;
         place-self: center;
         display: grid;

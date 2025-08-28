@@ -1,11 +1,12 @@
 <script>
+    import { CHEER_TOAST } from './const';
     import { _prompt } from './state.svelte';
     import { post } from './utils';
 
     const { op } = $props();
 
     let scale = $state(1);
-    const style = $derived(`transform: scale(${scale});`);
+    const style = $derived(`transform: scale(${scale}); ${op.label === CHEER_TOAST ? 'filter: saturate(2.5);' : ''}`);
 
     $effect(() => {
         const onTransitionEnd = (e) => {
@@ -26,7 +27,11 @@
     });
 </script>
 
-<div id={op.label} class='button-base no-highlight button cookie' {style} onpointerdown={() => (scale = 0.8)}>
+<div
+    id={op.label}
+    class="button-base no-highlight button {op.label === CHEER_TOAST ? 'toast' : 'cookie'}"
+    {style}
+    onpointerdown={() => (scale = 0.8)}>
     <span style={op.style}>{op.label}</span>
 </div>
 
@@ -38,5 +43,4 @@
     .button:hover {
         filter: saturate(2);
     }
-
 </style>
