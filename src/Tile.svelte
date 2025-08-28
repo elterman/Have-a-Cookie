@@ -62,7 +62,7 @@
 <div
     {id}
     bind:this={_this}
-    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''}"
+    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''} {ss.over === LOST ? 'shake' : ''}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
@@ -111,5 +111,24 @@
 
     .pressed {
         scale: 0.7;
+    }
+
+    .shake {
+        animation: shake 0.1s alternate 2 ease-in-out;
+    }
+
+    @keyframes shake {
+        from {
+            transform: scale(1, 1);
+        }
+        33% {
+            transform: scale(1, 1.2);
+        }
+        66% {
+            transform: scale(1.2, 1);
+        }
+        to {
+            transform: scale(1, 1);
+        }
     }
 </style>

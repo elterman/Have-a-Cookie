@@ -13,7 +13,7 @@
     import PromptPanel from './Prompt Panel.svelte';
     import { onSizeSet, onStartOrResume } from './shared.svelte';
     import { _sound } from './sound.svelte';
-    import { ss } from './state.svelte';
+    import { _prompt, ss } from './state.svelte';
     import ToolButton from './Tool Button.svelte';
     import { PROMPT_RESUME, PROMPT_START } from './const';
 
@@ -32,7 +32,7 @@
     };
 </script>
 
-{#if ss.startPrompt}
+{#if ss.startPrompt && !_prompt.id}
     <div class="start-prompt" transition:fade>
         {#snippet prompt(label)}
             <div class="start">
