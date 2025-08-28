@@ -5,9 +5,53 @@ import { post, retile } from './utils';
 
 export const log = (value) => console.log($state.snapshot(value));
 
+export const appKey = () => `${APP_STATE} • ${ss.size}`;
+
 export const persist = () => {
-    const json = JSON.stringify({ ..._stats, sfx: _sound.sfx, music: _sound.music });
+    let json = JSON.stringify({ sfx: _sound.sfx, music: _sound.music });
     localStorage.setItem(APP_STATE, json);
+
+    json = JSON.stringify({ ..._stats, sfx: _sound.sfx, music: _sound.music });
+    localStorage.setItem(appKey(), json);
+};
+
+const loadGame = () => {
+    let json = localStorage.getItem(APP_STATE);
+    let job = JSON.parse(json);
+
+    if (job) {
+        _sound.sfx = job.sfx;
+        _sound.music = job.music;
+    }
+
+    json = localStorage.getItem(appKey());
+    job = JSON.parse(json);
+
+    _stats.plays = job?.plays || 0;
+    _stats.won = job?.won || 0;
+    _stats.total_secs = job?.total_secs || 0;
+    _stats.best_secs = job?.best_secs || 0;
+};
+
+export const onSizeSet = (size, tileSets) => {
+    ss.size = size;
+    loadGame();
+
+    if (!tileSets) {
+        ss.tileSets = null;
+        
+        post(() => {
+            const sets = retile(size);
+            ss.tileSets = sets;
+        });
+    }
+
+    ss.step = 1;
+    ss.ticks = 0;
+    ss.over = null;
+    ss.paused = true;
+
+    _prompt.set(null);
 };
 
 export const showIntro = (value, plop = true) => {
@@ -102,19 +146,3 @@ export const onOver = (over) => {
 };
 
 export const elapsedSecs = () => Math.round(((ss.ticks || 0) * TICK_MS) / 1000);
-
-export const onSizeSet = (size, tileSets) => {
-    ss.size = size;
-
-    if (!tileSets) {
-        ss.tileSets = null;
-        post(() => ss.tileSets = retile(size));
-    }
-
-    ss.step = 1;
-    ss.ticks = 0;
-    ss.over = null;
-    ss.paused = true;
-
-    _prompt.set(null);
-};

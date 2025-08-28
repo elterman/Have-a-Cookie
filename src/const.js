@@ -9,7 +9,7 @@ export const PROMPT_START = 'START';
 export const PROMPT_RESUME = 'RESUME';
 export const PROMPT_NO = 'NO';
 export const TICK_MS = 500;
-export const TIME_OUT_SECS = 3559;
+export const TIME_OUT_SECS = 3959;
 
 export const FLAGS = [5, 9, 13, 17, 21];
 export const SECS = [25, 33, 41, 49, 57];

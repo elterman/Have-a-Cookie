@@ -1,33 +1,11 @@
 <script>
-    import { onMount } from 'svelte';
     import Board from './Board.svelte';
     import Counters from './Counters.svelte';
     import Prompt from './Prompt.svelte';
+    import StartPrompt from './Start Prompt.svelte';
     import Stats from './Stats.svelte';
     import Toolbar from './Toolbar.svelte';
-    import { APP_STATE } from './const';
-    import { _sound } from './sound.svelte';
-    import { _stats, ss } from './state.svelte';
-    import { post } from './utils';
-    import StartPrompt from './Start Prompt.svelte';
-
-    onMount(() => {
-        const loadGame = () => {
-            const json = localStorage.getItem(APP_STATE);
-            const job = JSON.parse(json);
-
-            if (job) {
-                _stats.plays = job.plays;
-                _stats.won = job.won;
-                _stats.total_secs = job.total_secs;
-                _stats.best_secs = job.best_secs;
-                _sound.sfx = job.sfx;
-                _sound.music = job.music;
-            }
-        };
-
-        post(loadGame);
-    });
+    import { ss } from './state.svelte';
 
     const hidden = $derived(ss.intro);
 </script>
@@ -45,7 +23,7 @@
     .game-page {
         grid-area: 1/1;
         display: grid;
-        grid: auto 0.30fr 1fr 0.30fr auto / auto;
+        grid: auto 0.3fr 1fr 0.3fr auto / auto;
         padding: 20px 0;
         /* background: #0007; */
         width: 100%;
