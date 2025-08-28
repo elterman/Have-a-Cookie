@@ -85,7 +85,7 @@
 
     .content {
         grid-area: 2/1;
-        font-size: 21px;
+        font-size: 22px;
         display: grid;
         align-content: start;
         width: 330px;
