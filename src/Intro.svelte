@@ -27,12 +27,12 @@
     const onClick = () => {
         _sound.play('plop');
 
-        if (!_sound.musicPlayed) {
-            _sound.playMusic();
-        }
-
         if (!ss.size) {
             onSizeSet(DEFAULT_GAME_SIZE);
+        }
+
+        if (!_sound.musicPlayed) {
+            _sound.playMusic();
         }
 
         if (!ss.over) {
