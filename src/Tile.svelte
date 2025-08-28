@@ -42,11 +42,15 @@
     };
 
     $effect(() => {
-        const onTransitionEnd = () => {
-            if (pressed) {
-                pressed = false;
-            } else {
-                onClick();
+        const onTransitionEnd = (e) => {
+            if (e.propertyName === 'scale') {
+                if (pressed) {
+                    pressed = false;
+                } else {
+                    onClick();
+                }
+
+                return;
             }
         };
 
@@ -63,7 +67,7 @@
 <div
     {id}
     bind:this={_this}
-    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''} {ss.over === LOST ? 'shake' : ''}"
+    class="tile {ss.paused || ss.over ? 'ro' : ''} {pressed ? 'pressed' : ''} {ss.over === LOST ? 'shake' : ''} {ss.flip ? 'flipped' : ''}"
     style="grid-area: {area}; width: {width}px; height: {width}px;"
     onpointerdown={onPointerDown}>
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
@@ -94,7 +98,9 @@
         box-sizing: border-box;
         padding: 2.3%;
         cursor: pointer;
-        transition: scale 0.1s;
+        transition:
+            scale 0.1s,
+            linear transform 0.5s;
     }
 
     .content-wrapper {
@@ -137,5 +143,9 @@
         to {
             transform: scale(1, 1);
         }
+    }
+
+    .flipped {
+        transform: rotateX(90deg);
     }
 </style>

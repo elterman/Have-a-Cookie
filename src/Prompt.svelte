@@ -49,7 +49,12 @@
         ss.ticks = 0;
         ss.startPrompt = true;
 
-        post(() => onSizeSet(ss.size), 400);
+        ss.flip = true;
+
+        post(() => {
+            onSizeSet(ss.size);
+            post(() => delete ss.flip, 100);
+        }, 500);
     };
 </script>
 
