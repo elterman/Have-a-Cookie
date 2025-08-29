@@ -21,7 +21,7 @@
     });
 </script>
 
-<div bind:this={_this} class="board {ss.paused ? 'paused' : ''}">
+<div bind:this={_this} class="board {ss.paused && !ss.over ? 'paused' : ''}">
     {#each tiles as tile (tile.id)}
         <Tile {tile} />
     {/each}
