@@ -38,11 +38,11 @@
     }
 
     .button:hover {
-        filter: saturate(2);
+        filter: saturate(2) drop-shadow(0 2px 5px black);
     }
 
     .saturate {
-        filter: saturate(2.5);
+        filter: saturate(2.5) drop-shadow(0 2px 5px black);
     }
 
     .ro {

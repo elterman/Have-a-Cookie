@@ -36,7 +36,7 @@
         gap: 10px;
         border-radius: 50vh;
         color: gold;
-        filter: drop-shadow(0 2px 3px black);
+        filter: drop-shadow(0 1px 2px black);
     }
 
     .item {

@@ -80,6 +80,7 @@
             --ow: #c6c7be;
             --gold: #daa520;
             --red: #a52a2a;
+            --orange: #ff7900;
             --background: #604020;
             color: var(--ow);
             background: var(--background);
