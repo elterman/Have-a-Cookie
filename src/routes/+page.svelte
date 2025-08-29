@@ -78,8 +78,6 @@
             margin: 0;
             overflow: hidden;
             --ow: #c6c7be;
-            --sn: #309678;
-            --gray: #6d6a67;
             --gold: #daa520;
             --red: #a52a2a;
             --background: #604020;
