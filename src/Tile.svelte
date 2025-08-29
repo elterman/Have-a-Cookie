@@ -35,7 +35,7 @@
 
         if (!item) {
             const nextStep = ss.step === TILE_SET_SIZE ? 1 : ss.step + 1;
-            post(() => ss.step = nextStep);
+            post(() => (ss.step = nextStep));
 
             return;
         }
@@ -77,7 +77,9 @@
         <div class="content-wrapper" transition:scale={{ opacity: 1 }}>
             {#snippet content(img, sz)}
                 {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
-                <div class="content" transition:scale={{ duration: ss.over ? 400 : 100, opacity: 1 }}>
+                <div
+                    class="content {coin && ss.over === WON ? 'pulse' : ''}"
+                    transition:scale={{ duration: ss.over ? 400 : 100, opacity: 1 }}>
                     <img src={img} alt="" width={sz} style="filter: {filter};" />
                 </div>
             {/snippet}
@@ -153,5 +155,19 @@
 
     .flip-y {
         transform: rotateY(90deg);
+    }
+
+    .pulse {
+        animation: pulse 0.2s alternate 8 ease-in-out;
+        animation-delay: 1000;
+    }
+
+    @keyframes pulse {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(0.7);
+        }
     }
 </style>
