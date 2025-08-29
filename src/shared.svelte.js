@@ -120,27 +120,30 @@ export const onOver = (over) => {
     ss.over = over;
     stopTimer();
 
+    let cheer;
+
     if (over === WON) {
         _stats.won += 1;
         const secs = elapsedSecs();
 
         _stats.total_secs += secs;
 
+        cheer = CHEER_DELICIOUS;
+
         if (_stats.best_secs === 0 || secs < _stats.best_secs) {
             _stats.best_secs = secs;
 
             if (_stats.won > 1) {
-                _prompt.set(CHEER_BEST_SCORE);
+                cheer = CHEER_BEST_SCORE;
             }
-        } else {
-            _prompt.set(CHEER_DELICIOUS);
         }
 
         persist();
     } else {
-        _prompt.set(CHEER_TOAST);
+        cheer = CHEER_TOAST;
     }
 
+    _prompt.set(cheer);
     post(() => _prompt.set(PROMPT_PLAY_AGAIN), 3000);
 };
 
