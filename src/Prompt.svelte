@@ -58,7 +58,7 @@
         <PromptPanel
             ops={[
                 { label, style: 'font-size: 24px;', onClick: onResetStats },
-                { label: PROMPT_NO, style },
+                { label: PROMPT_NO, style: 'font-size: 24px;', onClick: () => {} },
             ]} />
     {:else if label}
         <PromptPanel ops={[{ label, style }]} />

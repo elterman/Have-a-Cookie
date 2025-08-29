@@ -95,6 +95,5 @@
     .buttons {
         grid-area: 3/1;
         place-self: center;
-        filter: drop-shadow(0 2px 5px black);
     }
 </style>

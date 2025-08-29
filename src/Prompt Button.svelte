@@ -34,6 +34,7 @@
 <style>
     .button {
         cursor: pointer;
+        filter: drop-shadow(0 2px 5px black);
     }
 
     .button:hover {
@@ -42,7 +43,7 @@
 
     .saturate {
         filter: saturate(2.5);
-    }   
+    }
 
     .ro {
         pointer-events: none;

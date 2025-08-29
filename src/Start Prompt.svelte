@@ -71,7 +71,6 @@
 
     .start {
         place-self: center;
-        filter: drop-shadow(0 2px 5px black);
         animation: pulse 0.25s alternate infinite ease-in-out;
     }
 
