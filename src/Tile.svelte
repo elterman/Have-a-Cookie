@@ -75,19 +75,19 @@
     <img class="plate" src={ss.over && coin ? WhitePlate : sel && trap ? BlackPlate : Plate} alt="" width="100%" height="100%" />
     {#if !ss.paused || ss.over}
         <div class="content-wrapper" transition:scale={{ opacity: 1 }}>
-            {#snippet content(img, sz)}
+            {#snippet content(img, sz, dy = 0)}
                 {@const filter = `drop-shadow(0 0 ${sz / 10}px black) saturate(${sel && trap ? 2 : 1})`}
                 <div
-                    class="content {coin && ss.over === WON ? 'pulse' : ''}"
+                    class="content {coin && ss.over === WON ? 'pulse' : ''}" style='transform: translateY({dy}%);'
                     transition:scale={{ duration: ss.over ? 400 : 100, opacity: 1 }}>
                     <img src={img} alt="" width={sz} style="filter: {filter};" />
                 </div>
             {/snippet}
             {#if coin}
-                {@render content(Coin, coinSize)}
+                {@render content(Coin, coinSize, -3)}
             {/if}
             {#if trap}
-                {@render content(Trap, trapSize)}
+                {@render content(Trap, trapSize, -2)}
             {/if}
             {#if flag}
                 {@render content(Flag, flagSize)}
