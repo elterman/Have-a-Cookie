@@ -84,10 +84,10 @@
                 </div>
             {/snippet}
             {#if coin}
-                {@render content(Coin, coinSize, -3)}
+                {@render content(Coin, coinSize, 0)}
             {/if}
             {#if trap}
-                {@render content(Trap, trapSize, -2)}
+                {@render content(Trap, trapSize, 0)}
             {/if}
             {#if flag}
                 {@render content(Flag, flagSize)}
